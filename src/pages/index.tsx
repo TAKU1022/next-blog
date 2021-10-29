@@ -1,3 +1,5 @@
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { client } from '../libs/client';
 
 const Home = (props: any) => {
@@ -7,13 +9,17 @@ const Home = (props: any) => {
     <ul>
       {articleList.map((article: any) => (
         <li key={article.id}>
-          <p>{article.title}</p>
-          <p>{article.category.name}</p>
-          <div>
-            {article.tags.map((tag: any) => (
-              <span key={tag.id}>{tag.name}</span>
-            ))}
-          </div>
+          <Link href="/posts/[id]" as={`/posts/${article.id}`} passHref>
+            <a>
+              <p>{article.title}</p>
+              <p>{article.category.name}</p>
+              <div>
+                {article.tags.map((tag: any) => (
+                  <span key={tag.id}>{tag.name}</span>
+                ))}
+              </div>
+            </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -22,12 +28,12 @@ const Home = (props: any) => {
 
 export default Home;
 
-export const getStaticProps = async () => {
-  const blog = await client.get({ endpoint: 'blog' });
+export const getStaticProps: GetStaticProps = async () => {
+  const blogData = await client.get({ endpoint: 'blog' });
 
   return {
     props: {
-      articleList: blog.contents,
+      articleList: blogData.contents,
     },
   };
 };
