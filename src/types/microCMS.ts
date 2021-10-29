@@ -1,21 +1,3 @@
-export type Category = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  name: string;
-};
-
-export type Tag = {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  revisedAt: string;
-  name: string;
-};
-
 export type Article = {
   id: string;
   createdAt: string;
@@ -29,12 +11,37 @@ export type Article = {
     url: string;
   };
   body: string;
-  category: Category;
-  tags: Tag[];
+  category: ArticleCategory;
+  tags: ArticleTag[];
+};
+
+export type ArticleCategory = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  name: string;
+};
+
+export type ArticleTag = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  name: string;
 };
 
 export type BlogField = {
   contents: Article[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+};
+
+export type CategoryField = {
+  contents: ArticleCategory[];
   totalCount: number;
   offset: number;
   limit: number;
