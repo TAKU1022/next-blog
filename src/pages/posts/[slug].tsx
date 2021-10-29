@@ -9,12 +9,11 @@ type Props = {
 
 const PostDetail: VFC<Props> = (props: Props) => {
   const { article } = props;
-  console.log(article);
 
   return (
     <div>
       <p>{article.title}</p>
-      {/* <img src={article.thumbnail} alt={`${article.title}のサムネイル`} /> */}
+      <img src={article.thumbnail.url} alt={`${article.title}のサムネイル`} />
       <div dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </div>
   );
@@ -23,10 +22,10 @@ const PostDetail: VFC<Props> = (props: Props) => {
 export default PostDetail;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params?.id as string;
+  const articleId = context.params?.slug as string;
   const blogData = await client.get<Article>({
     endpoint: 'blog',
-    contentId: id,
+    contentId: articleId,
   });
 
   return {
