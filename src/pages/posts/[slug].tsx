@@ -9,11 +9,12 @@ type Props = {
 
 const PostDetail: VFC<Props> = (props: Props) => {
   const { article } = props;
+  console.log(article);
 
   return (
     <div>
       <p>{article.title}</p>
-      <img src={article.thumbnail.url} alt={`${article.title}のサムネイル`} />
+      {/* <img src={article.thumbnail} alt={`${article.title}のサムネイル`} /> */}
       <div dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </div>
   );
