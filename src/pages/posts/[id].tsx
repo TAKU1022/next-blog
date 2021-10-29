@@ -1,7 +1,13 @@
+import { VFC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { client } from '../../libs/client';
+import { Article, BlogField } from '../../types/microCMS';
 
-const PostDetail = (props: any) => {
+type Props = {
+  article: Article;
+};
+
+const PostDetail: VFC<Props> = (props: Props) => {
   const { article } = props;
 
   return (
@@ -17,7 +23,10 @@ export default PostDetail;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id as string;
-  const blogData = await client.get({ endpoint: 'blog', contentId: id });
+  const blogData = await client.get<Article>({
+    endpoint: 'blog',
+    contentId: id,
+  });
 
   return {
     props: {
@@ -27,8 +36,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogData = await client.get({ endpoint: 'blog' });
-  const paths = blogData.contents.map((article: any) => `/posts/${article.id}`);
+  const blogData = await client.get<BlogField>({ endpoint: 'blog' });
+  const paths = blogData.contents.map(
+    (article: Article) => `/posts/${article.id}`
+  );
 
   return {
     paths,
