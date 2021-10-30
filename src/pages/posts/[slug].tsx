@@ -22,10 +22,10 @@ const PostDetail: VFC<Props> = (props: Props) => {
 export default PostDetail;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params?.id as string;
+  const articleId = context.params?.slug as string;
   const blogData = await client.get<Article>({
     endpoint: 'blog',
-    contentId: id,
+    contentId: articleId,
   });
 
   return {
