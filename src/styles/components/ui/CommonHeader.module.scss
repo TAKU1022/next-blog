@@ -1,0 +1,19 @@
+@use '../../mixins';
+
+.header {
+  display: flex;
+  padding: 1.6rem;
+  position: sticky;
+  top: 0;
+  @include mixins.responsive(md) {
+    padding: 1.6rem 3.2rem;
+  }
+}
+
+.header__link {
+  font-weight: bold;
+  font-size: 1.6rem;
+  @include mixins.responsive(md) {
+    font-size: 2rem;
+  }
+}
