@@ -5,17 +5,20 @@ import { client } from '../libs/client';
 import {
   Article,
   ArticleCategory,
+  ArticleTag,
   BlogField,
   CategoryField,
+  TagField,
 } from '../types/microCMS';
 
 type Props = {
   articleList: Article[];
   categoryList: ArticleCategory[];
+  tagList: ArticleTag[];
 };
 
 const Home: VFC<Props> = (props: Props) => {
-  const { articleList, categoryList } = props;
+  const { articleList, categoryList, tagList } = props;
 
   return (
     <div>
@@ -49,6 +52,15 @@ const Home: VFC<Props> = (props: Props) => {
           </li>
         ))}
       </ul>
+      <ul>
+        {tagList.map((tag: ArticleTag) => (
+          <li key={tag.id}>
+            <Link href="/tag/[slug]" as={`/tag/${tag.id}`} passHref>
+              <a>{tag.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -60,11 +72,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const CategoryData = await client.get<CategoryField>({
     endpoint: 'categories',
   });
+  const TagData = await client.get<TagField>({ endpoint: 'tags' });
 
   return {
     props: {
       articleList: blogData.contents,
       categoryList: CategoryData.contents,
+      tagList: TagData.contents,
     },
   };
 };

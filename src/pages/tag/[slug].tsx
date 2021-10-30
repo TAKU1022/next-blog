@@ -1,18 +1,13 @@
 import { VFC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { client } from '../../libs/client';
-import {
-  Article,
-  ArticleCategory,
-  BlogField,
-  CategoryField,
-} from '../../types/microCMS';
+import { Article, ArticleTag, BlogField, TagField } from '../../types/microCMS';
 
 type Props = {
   articleList: Article[];
 };
 
-const CategoryPage: VFC<Props> = (props: Props) => {
+const Tag: VFC<Props> = (props: Props) => {
   const { articleList } = props;
 
   return (
@@ -28,13 +23,13 @@ const CategoryPage: VFC<Props> = (props: Props) => {
   );
 };
 
-export default CategoryPage;
+export default Tag;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const categoryId = context.params?.slug as string;
+  const tagId = context.params?.slug as string;
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
-    queries: { filters: `category[equals]${categoryId}` },
+    queries: { filters: `tags[contains]${tagId}` },
   });
 
   return {
@@ -45,12 +40,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoryData = await client.get<CategoryField>({
-    endpoint: 'categories',
-  });
-  const paths = categoryData.contents.map(
-    (category: ArticleCategory) => `/category/${category.id}`
-  );
+  const tagData = await client.get<TagField>({ endpoint: 'tags' });
+  const paths = tagData.contents.map((tag: ArticleTag) => `/tag/${tag.id}`);
 
   return {
     paths,

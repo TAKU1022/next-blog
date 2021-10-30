@@ -46,3 +46,10 @@ export type CategoryField = {
   offset: number;
   limit: number;
 };
+
+export type TagField = {
+  contents: ArticleTag[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+};
