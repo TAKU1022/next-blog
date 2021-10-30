@@ -45,8 +45,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogData = await client.get<CategoryField>({ endpoint: 'categories' });
-  const paths = blogData.contents.map(
+  const categoryData = await client.get<CategoryField>({
+    endpoint: 'categories',
+  });
+  const paths = categoryData.contents.map(
     (category: ArticleCategory) => `/category/${category.id}`
   );
 
