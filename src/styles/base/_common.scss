@@ -1,0 +1,33 @@
+:root {
+  --primary-white: #fafafa;
+  --primary-black: #2b2b2b;
+}
+
+html {
+  font-family: '游ゴシック体', Yu Gothic, YuGothic, 'ヒラギノ角ゴシック Pro',
+    Hiragino Kaku Gothic Pro, 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック',
+    MS PGothic, sans-serif;
+  font-size: 62.5%;
+  line-height: 1.5;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: var(--primary-white);
+  color: var(--primary-black);
+}
+
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+.wrapper {
+  min-height: var(--vh, 100vh);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}

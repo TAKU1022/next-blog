@@ -1,5 +1,6 @@
 import { ReactNode, VFC } from 'react';
-import CommonHeader from '../ui/CommonHeader';
+import { CommonFooter } from '../ui/CommonFooter';
+import { CommonHeader } from '../ui/CommonHeader';
 
 type Props = {
   children: ReactNode;
@@ -9,10 +10,11 @@ const DefaultLayout: VFC<Props> = (props: Props) => {
   const { children } = props;
 
   return (
-    <>
+    <div className="wrapper">
       <CommonHeader />
-      <main>{children}</main>
-    </>
+      <main className="main">{children}</main>
+      <CommonFooter />
+    </div>
   );
 };
 
