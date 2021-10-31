@@ -10,11 +10,11 @@ const DefaultLayout: VFC<Props> = (props: Props) => {
   const { children } = props;
 
   return (
-    <>
+    <div className="wrapper">
       <CommonHeader />
-      <main>{children}</main>
+      <main className="main">{children}</main>
       <CommonFooter />
-    </>
+    </div>
   );
 };
 

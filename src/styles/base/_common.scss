@@ -21,3 +21,13 @@ body {
 .js-focus-visible :focus:not(.focus-visible) {
   outline: 0;
 }
+
+.wrapper {
+  min-height: var(--vh, 100vh);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
