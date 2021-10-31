@@ -1,5 +1,6 @@
 import { ReactNode, VFC } from 'react';
-import CommonHeader from '../ui/CommonHeader';
+import { CommonFooter } from '../ui/CommonFooter';
+import { CommonHeader } from '../ui/CommonHeader';
 
 type Props = {
   children: ReactNode;
@@ -12,6 +13,7 @@ const DefaultLayout: VFC<Props> = (props: Props) => {
     <>
       <CommonHeader />
       <main>{children}</main>
+      <CommonFooter />
     </>
   );
 };
