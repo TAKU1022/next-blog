@@ -10,10 +10,10 @@
   }
 }
 
-.header__link {
+.header__logo {
   font-weight: bold;
   font-size: 1.6rem;
   @include mixins.responsive(md) {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 }
