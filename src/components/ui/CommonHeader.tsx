@@ -2,7 +2,7 @@ import { VFC } from 'react';
 import Link from 'next/link';
 import styles from '../../styles/components/ui/CommonHeader.module.scss';
 
-const CommonHeader: VFC = () => {
+export const CommonHeader: VFC = () => {
   return (
     <header className={styles.header}>
       <Link href="/">
@@ -13,5 +13,3 @@ const CommonHeader: VFC = () => {
     </header>
   );
 };
-
-export default CommonHeader;
