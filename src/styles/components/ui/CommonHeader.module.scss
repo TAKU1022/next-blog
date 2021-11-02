@@ -2,18 +2,20 @@
 
 .header {
   display: flex;
-  padding: 1.6rem;
+  padding: 1.6rem 1.6rem 0;
   position: sticky;
   top: 0;
+  z-index: 999;
   @include mixins.responsive(md) {
-    padding: 1.6rem 3.2rem;
+    padding: 1.6rem 3.2rem 0;
   }
 }
 
-.header__link {
+.header__logo {
+  color: var(--primary-blue);
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   @include mixins.responsive(md) {
-    font-size: 2rem;
+    font-size: 2.6rem;
   }
 }

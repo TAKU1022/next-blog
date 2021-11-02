@@ -1,0 +1,48 @@
+@use '../../mixins';
+
+.category {
+  display: block;
+  border: 3px solid var(--primary-black);
+  border-radius: 1rem;
+  background-color: var(--primary-white);
+  color: var(--primary-black);
+  transition: 0.3s;
+  position: relative;
+  @include mixins.hover {
+    border: 3px solid var(--primary-blue);
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+}
+
+.category__text {
+  font-size: 2.4rem;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  &::before {
+    content: '';
+    display: block;
+    background-color: var(--primary-white);
+    width: 90%;
+    height: 3px;
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    left: 0;
+    margin: 0 auto;
+  }
+}

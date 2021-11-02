@@ -29,7 +29,7 @@ $breakpoints: (
   }
 }
 
-@mixin hover($ie: true) {
+@mixin hover($ie: false) {
   &:focus {
     @content;
   }
