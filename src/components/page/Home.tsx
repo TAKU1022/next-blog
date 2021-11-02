@@ -4,6 +4,7 @@ import { Article, ArticleCategory, ArticleTag } from '../../types/microCMS';
 import { ArticleCard } from '../ui/ArticleCard';
 import { PageLink } from '../ui/PageLink';
 import styles from '../../styles/components/page/Home.module.scss';
+import { CategoryCard } from '../ui/CategoryCard';
 
 type Props = {
   articleList: Article[];
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const Home: VFC<Props> = (props: Props) => {
-  const { articleList } = props;
+  const { articleList, categoryList } = props;
 
   return (
     <>
@@ -35,6 +36,21 @@ export const Home: VFC<Props> = (props: Props) => {
           <div className={styles.linkWrapper}>
             <PageLink path="/posts">もっとみる</PageLink>
           </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className="container">
+          <h2 className={styles.section__title}>
+            <span className={styles.section__text}>カテゴリー</span>
+          </h2>
+          <ul className={styles.categoryList}>
+            {categoryList.map((category: ArticleCategory) => (
+              <li key={category.id}>
+                <CategoryCard category={category} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </>
