@@ -5,6 +5,7 @@ import { ArticleCard } from '../ui/ArticleCard';
 import { PageLink } from '../ui/PageLink';
 import styles from '../../styles/components/page/Home.module.scss';
 import { CategoryCard } from '../ui/CategoryCard';
+import { TagLink } from '../ui/TagLink';
 
 type Props = {
   articleList: Article[];
@@ -13,7 +14,7 @@ type Props = {
 };
 
 export const Home: VFC<Props> = (props: Props) => {
-  const { articleList, categoryList } = props;
+  const { articleList, categoryList, tagList } = props;
 
   return (
     <>
@@ -48,6 +49,21 @@ export const Home: VFC<Props> = (props: Props) => {
             {categoryList.map((category: ArticleCategory) => (
               <li key={category.id}>
                 <CategoryCard category={category} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className="container">
+          <h2 className={styles.section__title}>
+            <span className={styles.section__text}>タグ</span>
+          </h2>
+          <ul className={styles.tagList}>
+            {tagList.map((tag: ArticleTag) => (
+              <li className={styles.tagList__item} key={tag.id}>
+                <TagLink tag={tag} />
               </li>
             ))}
           </ul>
