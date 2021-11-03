@@ -7,31 +7,27 @@ import {
   BlogField,
   CategoryField,
 } from '../../types/microCMS';
+import { Category } from '../../components/page/Category';
 
 type Props = {
+  category: ArticleCategory;
   articleList: Article[];
 };
 
 const CategoryPage: VFC<Props> = (props: Props) => {
-  const { articleList } = props;
+  const { category, articleList } = props;
 
-  return (
-    <div>
-      <ul>
-        {articleList.map((article: Article) => (
-          <li key={article.id}>
-            <p>{article.title}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <Category category={category} articleList={articleList} />;
 };
 
 export default CategoryPage;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const categoryId = context.params?.slug as string;
+  const category = await client.get({
+    endpoint: 'categories',
+    contentId: categoryId,
+  });
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: { filters: `category[equals]${categoryId}` },
@@ -39,6 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      category,
       articleList: blogData.contents,
     },
   };
