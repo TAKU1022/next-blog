@@ -2,31 +2,27 @@ import { VFC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { client } from '../../libs/client';
 import { Article, ArticleTag, BlogField, TagField } from '../../types/microCMS';
+import { Tag } from '../../components/page/Tag';
 
 type Props = {
+  tag: ArticleTag;
   articleList: Article[];
 };
 
-const Tag: VFC<Props> = (props: Props) => {
-  const { articleList } = props;
+const TagPage: VFC<Props> = (props: Props) => {
+  const { tag, articleList } = props;
 
-  return (
-    <div>
-      <ul>
-        {articleList.map((article: Article) => (
-          <li key={article.id}>
-            <p>{article.title}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <Tag tag={tag} articleList={articleList} />;
 };
 
-export default Tag;
+export default TagPage;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const tagId = context.params?.slug as string;
+  const tag = await client.get<ArticleTag>({
+    endpoint: 'tags',
+    contentId: tagId,
+  });
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: { filters: `tags[contains]${tagId}` },
@@ -34,6 +30,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      tag,
       articleList: blogData.contents,
     },
   };
