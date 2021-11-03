@@ -26,7 +26,9 @@ export const ArticleCard: VFC<Props> = (props: Props) => {
           />
         </a>
       </Link>
-      <p className={styles.article__date}>{date}</p>
+      <p className={styles.article__date}>
+        <time dateTime={article.publishedAt}>{date}</time>
+      </p>
       <Link href="/posts/[slug]" as={`/posts/${article.id}`}>
         <a className={styles.article__title}>
           <h3>{article.title}</h3>
