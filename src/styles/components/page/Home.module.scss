@@ -93,10 +93,10 @@
     margin-top: 1.6rem;
   }
 
-  &:not(:last-child) {
-    margin-right: 0.8rem;
+  &:not(:first-child) {
+    margin-left: 0.8rem;
     @include mixins.responsive(md) {
-      margin-right: 1.6rem;
+      margin-left: 1.6rem;
     }
   }
 }
