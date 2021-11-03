@@ -24,7 +24,7 @@ export default CategoryPage;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const categoryId = context.params?.slug as string;
-  const category = await client.get({
+  const category = await client.get<ArticleCategory>({
     endpoint: 'categories',
     contentId: categoryId,
   });
