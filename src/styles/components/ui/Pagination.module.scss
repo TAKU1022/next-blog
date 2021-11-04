@@ -1,0 +1,68 @@
+@use '../../mixins';
+
+.pagination {
+  font-size: 1.4rem;
+}
+
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__item {
+  &:not(:first-child) {
+    margin-left: 0.8rem;
+  }
+}
+
+.pagination__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--primary-blue);
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  width: 40px;
+  height: 40px;
+  line-height: 1;
+  transition: 0.3s;
+  @include mixins.hover {
+    background-color: var(--primary-white);
+    color: var(--primary-blue);
+
+    .pagination__arrow {
+      color: var(--primary-blue);
+      stroke: var(--primary-blue);
+    }
+  }
+
+  &:active {
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+
+    .pagination__arrow {
+      color: var(--primary-white);
+      stroke: var(--primary-white);
+    }
+  }
+
+  &[aria-current='page'] {
+    background-color: var(--primary-white);
+    color: var(--primary-blue);
+    pointer-events: none;
+  }
+}
+
+.pagination__arrow {
+  color: var(--primary-white);
+  width: 18px;
+  height: 18px;
+  stroke: var(--primary-white);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: 0.3s;
+}
