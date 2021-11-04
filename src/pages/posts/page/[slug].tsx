@@ -50,10 +50,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogData = await client.get<BlogField>({ endpoint: 'blog' });
 
-  const getPageArray = (start: number, end: number) =>
+  const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
-  const paths = getPageArray(1, Math.ceil(blogData.totalCount / perPage)).map(
+  const paths = range(1, Math.ceil(blogData.totalCount / perPage)).map(
     (number: number) => `/posts/page/${number}`
   );
 
