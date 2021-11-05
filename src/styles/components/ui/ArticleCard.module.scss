@@ -70,8 +70,8 @@
   color: var(--primary-blue);
   margin-top: 0.8rem;
 
-  &:not(:last-child) {
-    margin-right: 0.8rem;
+  &:not(:first-child) {
+    margin-left: 0.8rem;
   }
 }
 
