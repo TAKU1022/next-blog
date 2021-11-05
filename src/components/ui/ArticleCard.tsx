@@ -21,7 +21,7 @@ export const ArticleCard: VFC<Props> = (props: Props) => {
           <img
             className={styles.article__thumbnail}
             src={article.thumbnail.url}
-            alt={`${article.title}のサムネイル`}
+            alt={article.title}
             loading="lazy"
           />
         </a>

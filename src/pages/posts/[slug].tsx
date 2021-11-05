@@ -36,7 +36,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const blogData = await client.get<BlogField>({ endpoint: 'blog' });
+  const blogData = await client.get<BlogField>({
+    endpoint: 'blog',
+    queries: { limit: 1000 },
+  });
   const paths = blogData.contents.map(
     (article: Article) => `/posts/${article.id}`
   );

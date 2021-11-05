@@ -48,6 +48,13 @@
   }
 }
 
+.pagination {
+  margin-top: 4.8rem;
+  @include mixins.responsive(sm) {
+    margin-top: 8rem;
+  }
+}
+
 .linkWrapper {
   text-align: center;
   margin-top: 6.4rem;

@@ -38,11 +38,11 @@ export const getStaticProps: GetStaticProps = async () => {
   });
   const CategoryData = await client.get<CategoryField>({
     endpoint: 'categories',
-    queries: { limit: 30, orders: '-publishedAt' },
+    queries: { limit: 1000, orders: '-publishedAt' },
   });
   const TagData = await client.get<TagField>({
     endpoint: 'tags',
-    queries: { limit: 30, orders: '-publishedAt' },
+    queries: { limit: 1000, orders: '-publishedAt' },
   });
 
   return {

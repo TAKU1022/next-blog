@@ -2,14 +2,17 @@ import { VFC } from 'react';
 import Head from 'next/head';
 import { Article } from '../../types/microCMS';
 import { ArticleCard } from '../ui/ArticleCard';
+import { Pagination } from '../ui/Pagination';
 import styles from '../../styles/components/page/Posts.module.scss';
 
 type Props = {
   articleList: Article[];
+  pageCount: number;
+  currentPage: number;
 };
 
 export const Posts: VFC<Props> = (props: Props) => {
-  const { articleList } = props;
+  const { articleList, pageCount, currentPage } = props;
 
   return (
     <>
@@ -29,6 +32,13 @@ export const Posts: VFC<Props> = (props: Props) => {
               </li>
             ))}
           </ul>
+          <div className={styles.pagination}>
+            <Pagination
+              pageCount={pageCount}
+              currentPage={currentPage}
+              path="posts"
+            />
+          </div>
         </div>
       </section>
     </>
