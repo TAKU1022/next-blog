@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
-    queries: { filters: `tags[contains]${tagId}` },
+    queries: { limit: 1000, filters: `tags[contains]${tagId}` },
   });
 
   return {
@@ -37,7 +37,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tagData = await client.get<TagField>({ endpoint: 'tags' });
+  const tagData = await client.get<TagField>({
+    endpoint: 'tags',
+    queries: { limit: 1000 },
+  });
   const paths = tagData.contents.map((tag: ArticleTag) => `/tag/${tag.id}`);
 
   return {

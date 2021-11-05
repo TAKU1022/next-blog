@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
-    queries: { filters: `category[equals]${categoryId}` },
+    queries: { limit: 1000, filters: `category[equals]${categoryId}` },
   });
 
   return {
@@ -44,6 +44,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const categoryData = await client.get<CategoryField>({
     endpoint: 'categories',
+    queries: { limit: 1000 },
   });
   const paths = categoryData.contents.map(
     (category: ArticleCategory) => `/category/${category.id}`
