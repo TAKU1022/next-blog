@@ -66,7 +66,7 @@
 .categoryList {
   display: grid;
   gap: 3.2rem;
-  max-width: 768px;
+  max-width: 76.8rem;
   margin-top: 4rem;
   margin-right: auto;
   margin-left: auto;
@@ -81,7 +81,7 @@
 .tagList {
   display: flex;
   flex-wrap: wrap;
-  max-width: 768px;
+  max-width: 76.8rem;
   margin-top: 3.2rem;
   margin-right: auto;
   margin-left: auto;
@@ -93,10 +93,10 @@
     margin-top: 1.6rem;
   }
 
-  &:not(:first-child) {
-    margin-left: 0.8rem;
+  &:not(:last-child) {
+    margin-right: 0.8rem;
     @include mixins.responsive(md) {
-      margin-left: 1.6rem;
+      margin-right: 1.6rem;
     }
   }
 }

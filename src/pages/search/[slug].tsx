@@ -1,10 +1,5 @@
 import { VFC } from 'react';
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  PreviewData,
-} from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { client } from '../../libs/client';
 import { Article, BlogField } from '../../types/microCMS';
 import { Search } from '../../components/page/Search';
@@ -23,7 +18,7 @@ const SearchPage: VFC<Props> = (props: Props) => {
 export default SearchPage;
 
 export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext
 ) => {
   const slug = context.params?.slug as string;
   const blogData = await client.get<BlogField>({

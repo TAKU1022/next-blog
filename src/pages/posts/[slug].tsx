@@ -1,5 +1,5 @@
 import { useMemo, VFC } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { client } from '../../libs/client';
@@ -42,7 +42,7 @@ const PostDetail: VFC<Props> = (props: Props) => {
               </li>
             ))}
           </ul>
-          <div className={styles.article__imageLink}>
+          <div className={styles.article__imageWrapper}>
             <img
               className={styles.article__thumbnail}
               src={article.thumbnail.url}
@@ -66,7 +66,9 @@ const PostDetail: VFC<Props> = (props: Props) => {
 
 export default PostDetail;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const articleId = context.params?.slug as string;
   const blogData = await client.get<Article>({
     endpoint: 'blog',

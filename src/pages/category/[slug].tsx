@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { client } from '../../libs/client';
 import {
   Article,
@@ -22,7 +22,9 @@ const CategoryPage: VFC<Props> = (props: Props) => {
 
 export default CategoryPage;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const categoryId = context.params?.slug as string;
   const category = await client.get<ArticleCategory>({
     endpoint: 'categories',

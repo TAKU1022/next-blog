@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { Posts } from '../../../components/page/Posts';
 import { client } from '../../../libs/client';
 import { Article, BlogField } from '../../../types/microCMS';
@@ -26,7 +26,9 @@ export default PostPagination;
 
 const perPage = 12;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const currentPage = parseInt(context.params?.slug as string);
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',

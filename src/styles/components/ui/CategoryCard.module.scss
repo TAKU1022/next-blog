@@ -2,14 +2,14 @@
 
 .category {
   display: block;
-  border: 3px solid var(--primary-black);
+  border: 0.3rem solid var(--primary-black);
   border-radius: 1rem;
   background-color: var(--primary-white);
   color: var(--primary-black);
   transition: 0.3s;
   position: relative;
   @include mixins.hover {
-    border: 3px solid var(--primary-blue);
+    border: 0.3rem solid var(--primary-blue);
     background-color: var(--primary-blue);
     color: var(--primary-white);
   }
@@ -38,10 +38,10 @@
     display: block;
     background-color: var(--primary-white);
     width: 90%;
-    height: 3px;
+    height: 0.3rem;
     position: absolute;
     right: 0;
-    bottom: -8px;
+    bottom: -0.8rem;
     left: 0;
     margin: 0 auto;
   }

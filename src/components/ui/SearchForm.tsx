@@ -3,20 +3,21 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import styles from '../../styles/components/ui/SearchForm.module.scss';
 
-type UseFormInputs = {
+type UseFormInput = {
   search: string;
 };
 
 export const SearchForm: VFC = () => {
   const router = useRouter();
-  const { register, handleSubmit, reset } = useForm<UseFormInputs>();
+  const { register, handleSubmit, reset } = useForm<UseFormInput>();
 
-  const onSubmit = (data: UseFormInputs) => {
+  const onSubmit = (data: UseFormInput) => {
     const value = data.search;
     if (value === '') return;
 
-    router.push(`/search/${value}`);
-    reset();
+    router.push(`/search/${value}`).then(() => {
+      reset();
+    });
   };
 
   return (
