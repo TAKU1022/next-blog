@@ -13,6 +13,11 @@ type Props = {
 
 const PostDetail: VFC<Props> = (props: Props) => {
   const { article } = props;
+
+  const description = article.body.replace(/<p>|<\/p>/g, '');
+  const newDescription =
+    description.length > 117 ? `${description.substr(0, 117)}...` : description;
+
   const date = useMemo(
     () => new Date(article.publishedAt).toLocaleDateString(),
     [article.publishedAt]
@@ -22,6 +27,7 @@ const PostDetail: VFC<Props> = (props: Props) => {
     <>
       <Head>
         <title>{article.title}｜TEHC BLOG</title>
+        <meta name="description" content={newDescription} />
       </Head>
 
       <article className={styles.article}>
@@ -70,14 +76,14 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const articleId = context.params?.slug as string;
-  const blogData = await client.get<Article>({
+  const article = await client.get<Article>({
     endpoint: 'blog',
     contentId: articleId,
   });
 
   return {
     props: {
-      article: blogData,
+      article,
     },
   };
 };
