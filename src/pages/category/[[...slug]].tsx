@@ -69,7 +69,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     endpoint: 'categories',
     queries: { limit: 1000 },
   });
-
+  const categoryIds = categoryData.contents.map(
+    (category: ArticleCategory) => category.id
+  );
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: { limit: 1000 },
@@ -80,8 +82,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
-  categoryData.contents.forEach((category: ArticleCategory) => {
-    const categoryId = category.id;
+  categoryIds.forEach((categoryId: string) => {
     const articleList = blogData.contents.filter(
       (article: Article) => article.category.id === categoryId
     );
