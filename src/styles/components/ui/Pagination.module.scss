@@ -21,11 +21,11 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: 1px solid var(--primary-blue);
+  border: 0.1rem solid var(--primary-blue);
   background-color: var(--primary-blue);
   color: var(--primary-white);
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   line-height: 1;
   transition: 0.3s;
   @include mixins.hover {
@@ -57,8 +57,8 @@
 
 .pagination__arrow {
   color: var(--primary-white);
-  width: 18px;
-  height: 18px;
+  width: 1.8rem;
+  height: 1.8rem;
   stroke: var(--primary-white);
   stroke-width: 2;
   stroke-linecap: round;

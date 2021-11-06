@@ -1,5 +1,5 @@
 import { VFC } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { client } from '../../libs/client';
 import { Article, ArticleTag, BlogField, TagField } from '../../types/microCMS';
 import { Tag } from '../../components/page/Tag';
@@ -17,7 +17,9 @@ const TagPage: VFC<Props> = (props: Props) => {
 
 export default TagPage;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
   const tagId = context.params?.slug as string;
   const tag = await client.get<ArticleTag>({
     endpoint: 'tags',

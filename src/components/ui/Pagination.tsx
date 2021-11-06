@@ -41,6 +41,7 @@ export const Pagination: VFC<Props> = (props: Props) => {
             </Link>
           </li>
         )}
+
         {range(1, pageCount).map((number: number) => (
           <li className={styles.pagination__item} key={number}>
             <Link
@@ -56,6 +57,7 @@ export const Pagination: VFC<Props> = (props: Props) => {
             </Link>
           </li>
         ))}
+
         {currentPage === pageCount || (
           <li className={styles.pagination__item}>
             <Link

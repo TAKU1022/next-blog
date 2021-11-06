@@ -1,5 +1,6 @@
 import { VFC } from 'react';
 import Link from 'next/link';
+import { SearchForm } from './SearchForm';
 import styles from '../../styles/components/ui/CommonHeader.module.scss';
 
 export const CommonHeader: VFC = () => {
@@ -10,6 +11,7 @@ export const CommonHeader: VFC = () => {
           <h1>TECH BLOG</h1>
         </a>
       </Link>
+      <SearchForm />
     </header>
   );
 };

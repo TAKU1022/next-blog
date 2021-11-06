@@ -18,6 +18,7 @@
 
 .section__text {
   display: inline-block;
+  word-break: break-all;
   position: relative;
 
   &::after {
@@ -31,6 +32,25 @@
     bottom: -0.8rem;
     left: 0;
     margin: 0 auto;
+  }
+}
+
+.section__br {
+  @include mixins.responsive(sm) {
+    display: none;
+  }
+}
+
+.noneText {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-top: 8rem;
+  @include mixins.responsive(sm) {
+    font-size: 2rem;
+  }
+  @include mixins.responsive(md) {
+    font-size: 2.4rem;
   }
 }
 
