@@ -29,7 +29,7 @@ const perPage = 12;
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const currentPage = parseInt(context.params?.slug as string);
+  const currentPage = parseInt(context.params?.page as string);
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: {
