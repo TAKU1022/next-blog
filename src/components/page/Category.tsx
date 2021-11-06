@@ -34,13 +34,17 @@ export const Category: VFC<Props> = (props: Props) => {
               </li>
             ))}
           </ul>
-          <div className={styles.pagination}>
-            <Pagination
-              pageCount={pageCount}
-              currentPage={currentPage}
-              path={`/category/${category.id}`}
-            />
-          </div>
+
+          {pageCount === 1 || (
+            <div className={styles.pagination}>
+              <Pagination
+                pageCount={pageCount}
+                currentPage={currentPage}
+                path={`/category/${category.id}`}
+              />
+            </div>
+          )}
+
           <div className={styles.linkWrapper}>
             <PageLink path="/posts">記事一覧ページへ戻る</PageLink>
           </div>

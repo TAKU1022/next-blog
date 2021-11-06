@@ -32,13 +32,16 @@ export const Posts: VFC<Props> = (props: Props) => {
               </li>
             ))}
           </ul>
-          <div className={styles.pagination}>
-            <Pagination
-              pageCount={pageCount}
-              currentPage={currentPage}
-              path="/posts"
-            />
-          </div>
+
+          {pageCount === 1 || (
+            <div className={styles.pagination}>
+              <Pagination
+                pageCount={pageCount}
+                currentPage={currentPage}
+                path="/posts"
+              />
+            </div>
+          )}
         </div>
       </section>
     </>
