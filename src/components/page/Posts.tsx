@@ -36,7 +36,7 @@ export const Posts: VFC<Props> = (props: Props) => {
             <Pagination
               pageCount={pageCount}
               currentPage={currentPage}
-              path="posts"
+              path="/posts"
             />
           </div>
         </div>

@@ -38,7 +38,7 @@ export const Category: VFC<Props> = (props: Props) => {
             <Pagination
               pageCount={pageCount}
               currentPage={currentPage}
-              path={`category/${category.id}`}
+              path={`/category/${category.id}`}
             />
           </div>
           <div className={styles.linkWrapper}>
