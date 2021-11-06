@@ -4,7 +4,12 @@ class MyDcocument extends Document {
   render() {
     return (
       <Html lang="ja">
-        <Head />
+        <Head>
+          <meta
+            name="description"
+            content="Next.jsを用いて開発したテックブログサイトです。"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
