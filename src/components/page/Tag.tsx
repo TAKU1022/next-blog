@@ -2,16 +2,19 @@ import { VFC } from 'react';
 import Head from 'next/head';
 import { Article, ArticleTag } from '../../types/microCMS';
 import { ArticleCard } from '../ui/ArticleCard';
+import { Pagination } from '../ui/Pagination';
 import { PageLink } from '../ui/PageLink';
 import styles from '../../styles/components/page/Posts.module.scss';
 
 type Props = {
   tag: ArticleTag;
   articleList: Article[];
+  pageCount: number;
+  currentPage: number;
 };
 
 export const Tag: VFC<Props> = (props: Props) => {
-  const { tag, articleList } = props;
+  const { tag, articleList, pageCount, currentPage } = props;
 
   return (
     <>
@@ -31,6 +34,17 @@ export const Tag: VFC<Props> = (props: Props) => {
               </li>
             ))}
           </ul>
+
+          {pageCount === 1 || (
+            <div className={styles.pagination}>
+              <Pagination
+                pageCount={pageCount}
+                currentPage={currentPage}
+                path={`/tag/${tag.id}`}
+              />
+            </div>
+          )}
+
           <div className={styles.linkWrapper}>
             <PageLink path="/posts">記事一覧ページへ戻る</PageLink>
           </div>

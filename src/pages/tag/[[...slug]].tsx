@@ -1,27 +1,22 @@
 import { VFC } from 'react';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { client } from '../../libs/client';
-import {
-  Article,
-  ArticleCategory,
-  BlogField,
-  CategoryField,
-} from '../../types/microCMS';
-import { Category } from '../../components/page/Category';
+import { Article, ArticleTag, BlogField, TagField } from '../../types/microCMS';
+import { Tag } from '../../components/page/Tag';
 
 type Props = {
-  category: ArticleCategory;
+  tag: ArticleTag;
   articleList: Article[];
   pageCount: number;
   currentPage: number;
 };
 
-const CategoryPage: VFC<Props> = (props: Props) => {
-  const { category, articleList, pageCount, currentPage } = props;
+const TagPage: VFC<Props> = (props: Props) => {
+  const { tag, articleList, pageCount, currentPage } = props;
 
   return (
-    <Category
-      category={category}
+    <Tag
+      tag={tag}
       articleList={articleList}
       pageCount={pageCount}
       currentPage={currentPage}
@@ -29,7 +24,7 @@ const CategoryPage: VFC<Props> = (props: Props) => {
   );
 };
 
-export default CategoryPage;
+export default TagPage;
 
 const perPage = 12;
 
@@ -37,26 +32,26 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const slug = context.params?.slug as string[];
-  const [categoryId, _, page] = slug;
+  const [tagId, _, page] = slug;
   const currentPage = page ? parseInt(page) : 1;
 
-  const category = await client.get<ArticleCategory>({
-    endpoint: 'categories',
-    contentId: categoryId,
+  const tag = await client.get<ArticleTag>({
+    endpoint: 'tags',
+    contentId: tagId,
   });
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: {
-      limit: perPage,
+      limit: 1000,
       offset: (currentPage - 1) * perPage,
-      filters: `category[equals]${categoryId}`,
+      filters: `tags[contains]${tagId}`,
     },
   });
   const pageCount = Math.ceil(blogData.totalCount / perPage);
 
   return {
     props: {
-      category,
+      tag,
       articleList: blogData.contents,
       pageCount,
       currentPage,
@@ -65,13 +60,11 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categoryData = await client.get<CategoryField>({
-    endpoint: 'categories',
+  const tagData = await client.get<TagField>({
+    endpoint: 'tags',
     queries: { limit: 1000 },
   });
-  const categoryIds = categoryData.contents.map(
-    (category: ArticleCategory) => category.id
-  );
+  const tagIds = tagData.contents.map((tag: ArticleTag) => tag.id);
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: { limit: 1000 },
@@ -82,15 +75,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
-  categoryIds.forEach((categoryId: string) => {
-    const articleList = blogData.contents.filter(
-      (article: Article) => article.category.id === categoryId
+  tagIds.forEach((tagId: string) => {
+    const articleList = blogData.contents.filter((article: Article) =>
+      article.tags.map((tag: ArticleTag) => tag.id).includes(tagId)
     );
 
-    paths.push(`/category/${categoryId}`);
+    paths.push(`/tag/${tagId}`);
     range(1, Math.ceil(articleList.length / perPage)).forEach(
       (number: number) => {
-        paths.push(`/category/${categoryId}/page/${number}`);
+        paths.push(`/tag/${tagId}/page/${number}`);
       }
     );
   });
