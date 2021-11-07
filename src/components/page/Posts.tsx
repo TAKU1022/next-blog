@@ -39,6 +39,7 @@ export const Posts: VFC<Props> = (props: Props) => {
                 pageCount={pageCount}
                 currentPage={currentPage}
                 path="/posts"
+                asPath="/posts"
               />
             </div>
           )}

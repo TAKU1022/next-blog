@@ -40,7 +40,8 @@ export const Category: VFC<Props> = (props: Props) => {
               <Pagination
                 pageCount={pageCount}
                 currentPage={currentPage}
-                path={`/category/${category.id}`}
+                path={`/category/[[...slug]]`}
+                asPath={`/category/${category.id}`}
               />
             </div>
           )}

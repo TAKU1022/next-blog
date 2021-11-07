@@ -34,13 +34,16 @@ export const ArticleCard: VFC<Props> = (props: Props) => {
           <h3>{article.title}</h3>
         </a>
       </Link>
-      <Link href="/category/[slug]" as={`/category/${article.category.id}`}>
+      <Link
+        href="/category/[[...slug]]"
+        as={`/category/${article.category.id}`}
+      >
         <a className={styles.article__category}>{article.category.name}</a>
       </Link>
       <ul className={styles.list}>
         {article.tags.map((tag: ArticleTag) => (
           <li className={styles.list__item} key={tag.id}>
-            <Link href="/tag/[slug]" as={`/tag/${tag.id}`}>
+            <Link href="/tag/[[...slug]]" as={`/tag/${tag.id}`}>
               <a className={styles.list__link}>#{tag.name}</a>
             </Link>
           </li>

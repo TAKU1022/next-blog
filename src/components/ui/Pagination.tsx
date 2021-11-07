@@ -6,10 +6,15 @@ type Props = {
   pageCount: number;
   currentPage: number;
   path: string;
+  asPath: string;
 };
 
 export const Pagination: VFC<Props> = (props: Props) => {
-  const { pageCount, currentPage, path } = props;
+  const { pageCount, currentPage, path, asPath } = props;
+  const hrefPath =
+    path === '/posts'
+      ? { default: path, other: `${path}/page/[page]` }
+      : { default: path, other: path };
 
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
@@ -20,8 +25,10 @@ export const Pagination: VFC<Props> = (props: Props) => {
         {currentPage === 1 || (
           <li className={styles.pagination__item}>
             <Link
-              href={currentPage === 2 ? path : `${path}/page/[slug]`}
-              as={currentPage === 2 ? path : `${path}/page/${currentPage - 1}`}
+              href={currentPage === 2 ? hrefPath.default : hrefPath.other}
+              as={
+                currentPage === 2 ? asPath : `${asPath}/page/${currentPage - 1}`
+              }
             >
               <a className={styles.pagination__link} rel="prev">
                 <svg
@@ -41,8 +48,8 @@ export const Pagination: VFC<Props> = (props: Props) => {
         {range(1, pageCount).map((number: number) => (
           <li className={styles.pagination__item} key={number}>
             <Link
-              href={number === 1 ? path : `${path}/page/[slug]`}
-              as={number === 1 ? path : `${path}/page/${number}`}
+              href={number === 1 ? hrefPath.default : hrefPath.other}
+              as={number === 1 ? asPath : `${asPath}/page/${number}`}
             >
               <a
                 className={styles.pagination__link}
@@ -57,8 +64,8 @@ export const Pagination: VFC<Props> = (props: Props) => {
         {currentPage === pageCount || (
           <li className={styles.pagination__item}>
             <Link
-              href={`${path}/page/[slug]`}
-              as={`${path}/page/${currentPage + 1}`}
+              href={hrefPath.other}
+              as={`${asPath}/page/${currentPage + 1}`}
             >
               <a className={styles.pagination__link} rel="next">
                 <svg

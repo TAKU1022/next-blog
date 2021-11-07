@@ -40,7 +40,8 @@ export const Tag: VFC<Props> = (props: Props) => {
               <Pagination
                 pageCount={pageCount}
                 currentPage={currentPage}
-                path={`/tag/${tag.id}`}
+                path={`/tag/[[...slug]]`}
+                asPath={`/tag/${tag.id}`}
               />
             </div>
           )}
