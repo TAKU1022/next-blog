@@ -20,10 +20,16 @@
   color: var(--primary-white);
   width: 18rem;
   height: 3rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   padding: 0 1.6rem 0 3.2rem;
   @include mixins.responsive(sm) {
     width: 26rem;
+  }
+
+  &::placeholder {
+    color: rgba(#fff, 0.8);
+    font-weight: inherit;
+    font-size: inherit;
   }
 }
 
