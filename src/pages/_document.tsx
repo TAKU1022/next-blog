@@ -7,7 +7,7 @@ class MyDcocument extends Document {
         <Head>
           <meta
             name="description"
-            content="Next.jsを用いて開発したテックブログサイトです。"
+            content="Next.jsとmicroCMSで開発したテックブログサイトです。"
           />
         </Head>
         <body>
