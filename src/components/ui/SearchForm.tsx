@@ -28,6 +28,7 @@ export const SearchForm: VFC = () => {
         className={styles.form__input}
         id="keyword-search"
         type="text"
+        placeholder="キーワード検索"
         {...register('search')}
       />
       <button className={styles.form__button} aria-label="検索する">
