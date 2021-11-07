@@ -15,15 +15,18 @@ export const SearchForm: VFC = () => {
     const value = data.search;
     if (value === '') return;
 
-    router.push(`/search/${value}`).then(() => {
-      reset();
-    });
+    router.push(`/search/${value}`);
+    reset();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <label className={styles.form__label} htmlFor="keyword-search">
+        記事検索
+      </label>
       <input
         className={styles.form__input}
+        id="keyword-search"
         type="text"
         {...register('search')}
       />

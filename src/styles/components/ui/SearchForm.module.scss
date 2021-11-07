@@ -4,6 +4,15 @@
   position: relative;
 }
 
+.form__label {
+  overflow: hidden;
+  width: 0.1rem;
+  height: 0.1rem;
+  position: absolute;
+  margin: -0.1rem;
+  z-index: -1;
+}
+
 .form__input {
   background-color: transparent;
   border-radius: 10rem;
