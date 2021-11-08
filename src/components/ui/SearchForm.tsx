@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { useEffect, VFC } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import styles from '../../styles/components/ui/SearchForm.module.scss';
@@ -18,6 +18,10 @@ export const SearchForm: VFC = () => {
     router.push({ pathname: '/search', query: { q: value } });
     reset();
   };
+
+  useEffect(() => {
+    router.prefetch('/search');
+  }, []);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
