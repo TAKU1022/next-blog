@@ -5,14 +5,14 @@ import { Article, BlogField } from '../../types/microCMS';
 import { Search } from '../../components/page/Search';
 
 type Props = {
-  slug: string;
+  keyword: string;
   articleList: Article[];
 };
 
 const SearchPage: VFC<Props> = (props: Props) => {
-  const { slug, articleList } = props;
+  const { keyword, articleList } = props;
 
-  return <Search slug={slug} articleList={articleList} />;
+  return <Search keyword={keyword} articleList={articleList} />;
 };
 
 export default SearchPage;
@@ -20,15 +20,15 @@ export default SearchPage;
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const slug = context.params?.slug as string;
+  const keyword = context.query.q as string;
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
-    queries: { limit: 1000, q: slug },
+    queries: { limit: 1000, q: keyword },
   });
 
   return {
     props: {
-      slug,
+      keyword,
       articleList: blogData.contents,
     },
   };

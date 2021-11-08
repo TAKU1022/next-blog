@@ -15,7 +15,7 @@ export const SearchForm: VFC = () => {
     const value = data.search;
     if (value === '') return;
 
-    router.push(`/search/${value}`);
+    router.push({ pathname: '/search', query: { q: value } });
     reset();
   };
 
