@@ -15,16 +15,20 @@ export const SearchForm: VFC = () => {
     const value = data.search;
     if (value === '') return;
 
-    router.push(`/search/${value}`).then(() => {
-      reset();
-    });
+    router.push({ pathname: '/search', query: { q: value } });
+    reset();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <label className={styles.form__label} htmlFor="keyword-search">
+        記事検索
+      </label>
       <input
         className={styles.form__input}
+        id="keyword-search"
         type="text"
+        placeholder="キーワード検索"
         {...register('search')}
       />
       <button className={styles.form__button} aria-label="検索する">

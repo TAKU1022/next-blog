@@ -5,18 +5,18 @@ import { Article } from '../../types/microCMS';
 import styles from '../../styles/components/page/Posts.module.scss';
 
 type Props = {
-  slug: string;
+  keyword: string;
   articleList: Article[];
 };
 
 export const Search: VFC<Props> = (props: Props) => {
-  const { slug, articleList } = props;
+  const { keyword, articleList } = props;
 
   return (
     <>
       <Head>
         <title>
-          「{slug}」の検索結果（{articleList.length}件）｜TEHC BLOG
+          「{keyword}」の検索結果（{articleList.length}件）｜TEHC BLOG
         </title>
       </Head>
 
@@ -24,7 +24,7 @@ export const Search: VFC<Props> = (props: Props) => {
         <div className="container">
           <h2 className={styles.section__title}>
             <span className={styles.section__text}>
-              「{slug}」<br className={styles.section__br} />
+              「{keyword}」<br className={styles.section__br} />
               の検索結果（{articleList.length}件）
             </span>
           </h2>
