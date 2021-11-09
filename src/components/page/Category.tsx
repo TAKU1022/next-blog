@@ -35,7 +35,7 @@ export const Category: VFC<Props> = (props: Props) => {
             ))}
           </ul>
 
-          {pageCount === 1 || (
+          {pageCount > 1 && (
             <div className={styles.pagination}>
               <Pagination
                 pageCount={pageCount}
