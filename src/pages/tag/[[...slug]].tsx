@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (
   const blogData = await client.get<BlogField>({
     endpoint: 'blog',
     queries: {
-      limit: 1000,
+      limit: perPage,
       offset: (currentPage - 1) * perPage,
       filters: `tags[contains]${tagId}`,
     },
